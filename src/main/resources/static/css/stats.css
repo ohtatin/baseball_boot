@@ -1,0 +1,89 @@
+body {
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+
+input {
+    margin-bottom: 5px;
+    width: 100px;
+}
+
+label {
+    margin-left: 0px;
+    font-size: 18px;
+}
+
+select {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+h2 {
+	
+    margin-left: 20px;
+}
+
+
+
+
+.page-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-left: 80px;
+    margin-top: 40px;
+}
+
+.input-area,
+.query-area {
+    width: 900px;
+    padding-right: 20px;
+}
+
+h2 {
+	font-size: 28px;
+	color: #041e42;
+    margin: 0 0 20px 0;
+}
+
+
+#resultTable {
+    width: 90%;
+}
+
+#resultTable th,
+#resultTable td {
+    white-space: nowrap;
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    font-size: 17px;
+}
+
+
+#pitcherForm input,
+#batterForm input {
+    width: 150px;
+}
+
+
+#resultTable {
+    border-collapse: collapse;
+}
+
+#resultTable th {
+    background: #e5e7eb;
+}
+
+
+button {
+	background: #2563eb;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}

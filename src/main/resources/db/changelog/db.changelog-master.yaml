@@ -1,0 +1,236 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: "1"
+      author: you
+      changes:
+
+        # pitcher_log
+        - createTable:
+            tableName: pitcher_log
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: op_team
+                  type: TINYTEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: innings
+                  type: INT UNSIGNED
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: er
+                  type: INT UNSIGNED
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: strikeouts
+                  type: INT UNSIGNED
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: walks
+                  type: INT UNSIGNED
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+
+
+        # batter_log
+        - createTable:
+            tableName: batter_log
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: op_team
+                  type: TINYTEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: atbats
+                  type: INT UNSIGNED
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hits
+                  type: INT UNSIGNED
+                  constraints:
+                    nullable: false
+              - column:
+                  name: strikeouts
+                  type: INT UNSIGNED
+                  constraints:
+                    nullable: false
+              - column:
+                  name: walks
+                  type: INT UNSIGNED
+                  constraints:
+                    nullable: false
+
+
+        # stats (排行榜)
+        - createTable:
+            tableName: leaderboard
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type
+                  type: VARCHAR(20)
+              - column:
+                  name: rank
+                  type: INT
+              - column:
+                  name: player_name
+                  type: VARCHAR(100)
+              - column:
+                  name: team
+                  type: VARCHAR(10)
+              - column:
+                  name: value
+                  type: DECIMAL(10,3)
+
+
+        # user / account 表
+        - createTable:
+            tableName: club
+            columns:
+              - column:
+                  name: team
+                  type: VARCHAR(40)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "3"
+      author: you
+      changes:
+        - modifyDataType:
+            tableName: leaderboard
+            columnName: team
+            newDataType: VARCHAR(50)
+
+  - changeSet:
+      id: "5"
+      author: you
+      changes:
+        - addColumn:
+            tableName: club
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+                  defaultValue: USER
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "6"
+      author: you
+      changes:
+        - modifyDataType:
+            tableName: club
+            columnName: password
+            newDataType: VARCHAR(100)
+
+  - changeSet:
+      id: "7"
+      author: you
+      changes:
+        - addColumn:
+            tableName: pitcher_log
+            columns:
+              - column:
+                  name: team
+                  type: VARCHAR(50)
+
+        - addColumn:
+            tableName: batter_log
+            columns:
+              - column:
+                  name: team
+                  type: VARCHAR(50)
+
+  - changeSet:
+      id: "8"
+      author: you
+      changes:
+                                                                            
+        - createTable:
+            tableName: alltime_leaderboard
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: type
+                  type: VARCHAR(50)
+
+              - column:
+                  name: rank
+                  type: INT
+
+              - column:
+                  name: player_name
+                  type: VARCHAR(100)
+
+              - column:
+                  name: team
+                  type: VARCHAR(100)
+
+              - column:
+                  name: value
+                  type: DOUBLE

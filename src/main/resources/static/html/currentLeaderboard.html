@@ -1,0 +1,39 @@
+<head>
+	<meta charset="utf-8">
+	<title>歡迎光臨</title>
+	<link rel="stylesheet" href="/css/leaderboard.css">
+
+</head>
+
+<body>
+
+<select onchange="loadData()">
+    <option value="homerun">全壘打</option>
+    <option value="avg">打擊率</option>
+    <option value="rbi">打點</option>
+    <option value="hit">安打</option>
+    <option value="sb">盜壘成功</option>
+    <option value="win">勝投</option>
+    <option value="era">防禦率</option>
+    <option value="so">奪三振</option>
+    
+
+</select>
+
+<table>
+    <thead>
+        <tr>
+            <th>名次</th>
+            <th>球員</th>
+            <th>球隊</th>
+            <th>成績</th>
+        </tr>
+    </thead>
+    <tbody id="data-body">
+        <!-- 這裡不寫死資料 -->
+    </tbody>
+</table>
+
+<script src="/js/currentLeaderboard.js"></script>
+
+</body>

@@ -1,0 +1,30 @@
+server:
+  port: 8083
+spring:
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    
+  web:
+    resources:
+      static-locations: classpath:/static/
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.MariaDBDialect
+  datasource:
+    type: org.apache.commons.dbcp2.BasicDataSource
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/teamdb
+    username: root
+    password: 4313
+    dbcp2:
+      initial-size: 15
+      max-total: 40
+      min-idle: 10
+      test-on-borrow: true
+      validation-query: SELECT 1
+      
+       
+  application:
+    name: baseball-boot

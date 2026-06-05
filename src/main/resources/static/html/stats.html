@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <title>球員資料輸入</title>
+
+    <link rel="stylesheet" href="/css/stats.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <script src="/js/stats.js" defer></script>
+</head>
+
+<body>
+
+
+<div class="page-layout">
+	<div class="input-area">
+	
+		<h2>球員資料輸入</h2>
+	
+		<label for="role">選擇角色：</label>
+		<select id="role">
+		    <option value="">請選擇</option>
+		    <option value="pitcher">投手</option>
+		    <option value="batter">打者</option>
+		</select>
+	
+	
+	<!-- 投手 -->
+	<div id="pitcherForm" style="display:none;">
+		<input type="hidden" id="p_id">
+	    <h3>投手資料</h3>
+	    姓名: <input type="text" id="p_name"><br>
+	    日期: <input type="date" id="p_date"><br>
+	    對手: <input type="text" id="p_op"><br>
+	    局數: <input type="number" id="p_innings"><br>
+	    失分: <input type="number" id="p_er"><br>
+	    奪三振: <input type="number" id="p_k"><br>
+	    保送: <input type="number" id="p_bb"><br>
+	    <button type="button" onclick="submitPitcher()">提交</button>
+	</div>
+	
+	<!-- 打者 -->
+	<div id="batterForm" style="display:none;">
+		<input type="hidden" id="b_id">
+	    <h3>打者資料</h3>
+	    姓名: <input type="text" id="b_name"><br>
+	    日期: <input type="date" id="b_date"><br>
+	    對手: <input type="text" id="b_op"><br>
+	    打數: <input type="number" id="b_ab"><br>
+	    安打: <input type="number" id="b_hit"><br>
+	    三振: <input type="number" id="b_k"><br>
+	    四壞: <input type="number" id="b_bb"><br>
+	    <button type="button" onclick="submitBatter()">提交</button>
+	</div>
+</div>	
+	
+	<div class="query-area">
+		<h2>球員資料查詢</h2>
+		姓名：<input type="text" id="search_name">
+		<button onclick="searchPlayer()">查詢</button>
+	
+		<div id="result"></div>
+	
+	
+		<br><br>
+		
+		<table border="1" id="resultTable">
+		    <thead>
+		        <tr>
+		            <th>類型</th>
+		            <th>日期</th>
+		            <th>對手</th>
+		            <th>內容</th>
+		            <th>操作</th>
+		        </tr>
+		    </thead>
+	    	<tbody>
+	    	</tbody>
+		</table>
+	
+	</div>
+	
+	
+</div>
+
+
+</body>
+</html>
+
+
+
+
