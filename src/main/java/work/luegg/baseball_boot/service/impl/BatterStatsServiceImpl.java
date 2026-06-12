@@ -29,7 +29,7 @@ public class BatterStatsServiceImpl implements BatterStatsService {
         b.setHits(dto.getHits());
         b.setStrikeouts(dto.getStrikeouts());
         b.setWalks(dto.getWalks());
-        b.setTeam(dto.getTeam());
+        b.setTeam(team);
 
         batterRepo.save(b);
 
@@ -48,6 +48,7 @@ public class BatterStatsServiceImpl implements BatterStatsService {
         dto.setHits(b.getHits());
         dto.setStrikeouts(b.getStrikeouts());
         dto.setWalks(b.getWalks());
+        dto.setTeam(b.getTeam());
         return dto;
     }
     
@@ -96,7 +97,7 @@ public class BatterStatsServiceImpl implements BatterStatsService {
             b.setHits(dto.getHits());
             b.setStrikeouts(dto.getStrikeouts());
             b.setWalks(dto.getWalks());
-            b.setTeam(dto.getTeam());
+            
 
             batterRepo.save(b);
         }

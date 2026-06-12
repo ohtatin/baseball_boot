@@ -36,16 +36,15 @@ public class BatterStatsDTO {
     public Integer getWalks() { return walks; }
     public void setWalks(Integer walks) { this.walks = walks; }
     
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	public long getId() { return id; }
+	public void setId(long id) { this.id = id; }
+	
 	public String getTeam() {
-		return team;
-	}
-	public void setTeam(String team) {
-		this.team = team;
-	}
+		return team; 
+		}
+	public void setTeam(String team) { 
+		this.team = team; 
+		}
 }
+
+
