@@ -33,7 +33,9 @@ public class SecurityConfig {
             					 "/club/login",
             					 "/club/register",
             				     "/mlb/leaderboard",
-            					 "/mlb/alltime_leaderboard"
+            					 "/mlb/alltime_leaderboard",
+            					 "/favicon.ico"
+            				   
             	).permitAll()
                 .anyRequest().authenticated()
             )

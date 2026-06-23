@@ -56,6 +56,8 @@
 - Spring Data JPA
 - JWT
 - Liquibase
+- JUnit 5
+- Mockito
 
 ### Database
 
@@ -74,6 +76,21 @@
 - Eclipse
 - Postman
 
+## 單元測試
+
+本專案使用 JUnit 5 與 Mockito 撰寫單元測試。
+
+已測試功能：
+
+### ClubServiceImpl
+- 註冊
+- 登入
+
+### BatterStatsServiceImpl
+- 新增打者資料
+- 查詢打者資料
+- 修改打者資料
+- 刪除打者資料
 ---
 
 ## 專案架構
