@@ -11,13 +11,13 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
-    database-platform: org.hibernate.dialect.MariaDBDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     type: org.apache.commons.dbcp2.BasicDataSource
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/teamdb
-    username: root
-    password: 4313
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://ep-bitter-firefly-aoggwfa4-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_h9fzAUTYaWM1&sslmode=require&channelBinding=require
+    username: neondb_owner
+    password: npg_h9fzAUTYaWM1
     dbcp2:
       initial-size: 15
       max-total: 40

@@ -28,30 +28,30 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: op_team
-                  type: TINYTEXT
+                  type: VARCHAR(20)
                   constraints:
                     nullable: false
               - column:
                   name: innings
-                  type: INT UNSIGNED
+                  type: INT
                   defaultValueNumeric: 0
                   constraints:
                     nullable: false
               - column:
                   name: er
-                  type: INT UNSIGNED
+                  type: INT 
                   defaultValueNumeric: 0
                   constraints:
                     nullable: false
               - column:
                   name: strikeouts
-                  type: INT UNSIGNED
+                  type: INT 
                   defaultValueNumeric: 0
                   constraints:
                     nullable: false
               - column:
                   name: walks
-                  type: INT UNSIGNED
+                  type: INT 
                   defaultValueNumeric: 0
                   constraints:
                     nullable: false
@@ -80,27 +80,27 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: op_team
-                  type: TINYTEXT
+                  type: VARCHAR(20)
                   constraints:
                     nullable: false
               - column:
-                  name: atbats
-                  type: INT UNSIGNED
+                  name: at_bats
+                  type: INT 
                   constraints:
                     nullable: false
               - column:
                   name: hits
-                  type: INT UNSIGNED
+                  type: INT 
                   constraints:
                     nullable: false
               - column:
                   name: strikeouts
-                  type: INT UNSIGNED
+                  type: INT 
                   constraints:
                     nullable: false
               - column:
                   name: walks
-                  type: INT UNSIGNED
+                  type: INT 
                   constraints:
                     nullable: false
 

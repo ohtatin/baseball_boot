@@ -99,7 +99,7 @@ public class PitcherStatsServiceImpl implements PitcherStatsService {
             p.setEr(dto.getEr());
             p.setStrikeouts(dto.getStrikeouts());
             p.setWalks(dto.getWalks());
-            p.setTeam(dto.getTeam());
+            
 
             pitcherRepo.save(p);
         }
