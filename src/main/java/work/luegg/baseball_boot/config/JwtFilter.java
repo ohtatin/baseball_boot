@@ -36,7 +36,8 @@ public class JwtFilter extends OncePerRequestFilter {
         System.out.println("目前進來的 path = " + path);
 
         // 登入 API 不用檢查 token
-        if (path.equals("/api/auth/login")
+        if (path.equals("/")
+        		|| path.equals("/api/auth/login")
         		|| path.equals("/club/login")
         	    || path.equals("/club/register")
         	    || path.equals("/mlb/leaderboard")
