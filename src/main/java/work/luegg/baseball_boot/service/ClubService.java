@@ -7,5 +7,5 @@ public interface ClubService {
     
 	String register(Club club);
 
-	String login(Club club);
+
 }

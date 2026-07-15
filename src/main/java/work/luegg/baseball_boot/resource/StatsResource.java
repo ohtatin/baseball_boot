@@ -2,7 +2,9 @@ package work.luegg.baseball_boot.resource;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,115 +29,160 @@ import work.luegg.baseball_boot.service.PitcherStatsService;
 @CrossOrigin
 public class StatsResource {
 
+    private static final Logger log =
+            LoggerFactory.getLogger(StatsResource.class);
+
     @Autowired
     private PitcherStatsService pitcherstatsService;
 
     @Autowired
     private BatterStatsService batterstatsService;
-    
+
+
     @PostMapping("/pitcher")
-    public String savePitcher(@RequestBody PitcherStatsDTO dto,
-    		                  HttpServletRequest request) {
-    	String loginTeam =
-    	        (String) request.getAttribute("team");
+    public String savePitcher(
+    		@Valid
+            @RequestBody PitcherStatsDTO dto,
+            HttpServletRequest request) {
 
-    	    dto.setTeam(loginTeam);
+        String loginTeam =
+                (String) request.getAttribute("team");
 
-        pitcherstatsService.savePitcherStats(dto,loginTeam);
+        log.debug("收到新增投手 Request: team={}", loginTeam);
+
+        
+
+        pitcherstatsService.savePitcherStats(dto, loginTeam);
+
         return "投手資料已儲存";
     }
 
-    @PostMapping("/batter")
-    public String saveBatter(@RequestBody BatterStatsDTO dto,
-    		                 HttpServletRequest request) {
-    	String loginTeam =
-    	        (String) request.getAttribute("team");
 
-    	    dto.setTeam(loginTeam);
-    	    
-        batterstatsService.saveBatterStats(dto,loginTeam);
+    @PostMapping("/batter")
+    public String saveBatter(
+    		
+    		@Valid
+            @RequestBody BatterStatsDTO dto,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        log.debug("收到新增打者 Request: team={}", loginTeam);
+
+        
+
+        batterstatsService.saveBatterStats(dto, loginTeam);
+
         return "打者資料已儲存";
     }
-    
-    
-    @GetMapping("/stats")
-    public List<QueryStatsDTO> getStats(@RequestParam String name,HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-    	List<QueryStatsDTO> list = new ArrayList<>();
 
-        list.addAll(batterstatsService.getStatsByName(name,loginTeam));
-        list.addAll(pitcherstatsService.getStatsByName(name,loginTeam));
+
+    @GetMapping("/stats")
+    public List<QueryStatsDTO> getStats(
+            @RequestParam String name,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        log.debug("收到球員查詢 Request: team={}, name={}",
+                loginTeam, name);
+
+        List<QueryStatsDTO> list = new ArrayList<>();
+
+        list.addAll(
+                batterstatsService.getStatsByName(name, loginTeam)
+        );
+
+        list.addAll(
+                pitcherstatsService.getStatsByName(name, loginTeam)
+        );
 
         return list;
     }
-    
-    
-    
+
+
     @GetMapping("/pitcher/{id}")
-    public PitcherStatsDTO getPitcher(@PathVariable Long id,HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-        return pitcherstatsService.getPitcherById(id,loginTeam);
+    public PitcherStatsDTO getPitcher(
+            @PathVariable Long id,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        return pitcherstatsService.getPitcherById(id, loginTeam);
     }
-    
+
+
     @GetMapping("/batter/{id}")
-    public BatterStatsDTO getBatter(@PathVariable Long id,HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-        return batterstatsService.getBatterById(id,loginTeam);
+    public BatterStatsDTO getBatter(
+            @PathVariable Long id,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        return batterstatsService.getBatterById(id, loginTeam);
     }
-    
-    
-    
+
+
     @PutMapping("/pitcher/{id}")
     public String updatePitcher(
             @PathVariable Long id,
-            @RequestBody PitcherStatsDTO dto,HttpServletRequest request) {
-    	
-    	String loginTeam = (String) request.getAttribute("team");
-        pitcherstatsService.updatePitcher(id, dto,loginTeam);
+            @Valid
+            @RequestBody PitcherStatsDTO dto,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        pitcherstatsService.updatePitcher(id, dto, loginTeam);
 
         return "投手資料修改成功";
     }
-    
+
+
     @PutMapping("/batter/{id}")
     public String updateBatter(
             @PathVariable Long id,
-            @RequestBody BatterStatsDTO dto,HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-        batterstatsService.updateBatter(id, dto,loginTeam);
+            @Valid
+            @RequestBody BatterStatsDTO dto,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        batterstatsService.updateBatter(id, dto, loginTeam);
 
         return "打者資料修改成功";
     }
-    
-    
-    
-    
+
+
     @DeleteMapping("/pitcher/{id}")
-    public String deletePitcher(@PathVariable Long id,HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-        pitcherstatsService.deletePitcher(id,loginTeam);
+    public String deletePitcher(
+            @PathVariable Long id,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        pitcherstatsService.deletePitcher(id, loginTeam);
 
         return "投手資料刪除成功";
-    }      
-    
-    
+    }
+
+
     @DeleteMapping("/batter/{id}")
-    public String deleteBatter(@PathVariable Long id, HttpServletRequest request) {
-    	String loginTeam = (String) request.getAttribute("team");
-        batterstatsService.deleteBatter(id,loginTeam);
+    public String deleteBatter(
+            @PathVariable Long id,
+            HttpServletRequest request) {
+
+        String loginTeam =
+                (String) request.getAttribute("team");
+
+        batterstatsService.deleteBatter(id, loginTeam);
 
         return "打者資料刪除成功";
     }
-    
-    
-}   
-
-
-
-
-
-
-
-
-
-
-    
+}

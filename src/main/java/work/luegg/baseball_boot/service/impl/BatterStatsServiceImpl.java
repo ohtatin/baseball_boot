@@ -3,6 +3,8 @@ package work.luegg.baseball_boot.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +16,26 @@ import work.luegg.baseball_boot.service.BatterStatsService;
 
 @Service
 public class BatterStatsServiceImpl implements BatterStatsService {
-	@Autowired
+
+    private static final Logger log =
+            LoggerFactory.getLogger(BatterStatsServiceImpl.class);
+
+    @Autowired
     private Batter_logRepository batterRepo;
 
-    @Override
-    public String saveBatterStats(BatterStatsDTO dto,String team) {
 
+    @Override
+    public String saveBatterStats(BatterStatsDTO dto, String team) {
+    	
+    	if (dto.getHits() > dto.getAtBats()) {
+    	    throw new IllegalArgumentException("安打數不能大於打數");
+    	}
+    	
+    	if (dto.getStrikeouts() > dto.getAtBats()) {
+    	    throw new IllegalArgumentException("三振數不能大於打數");
+    	}
         Batter_log b = new Batter_log();
-        
+
         b.setName(dto.getName());
         b.setDate(dto.getDate());
         b.setOpTeam(dto.getOpTeam());
@@ -33,35 +47,44 @@ public class BatterStatsServiceImpl implements BatterStatsService {
 
         batterRepo.save(b);
 
+        log.info("打者資料新增成功: team={}, id={}, name={}",
+                team, b.getId(), b.getName());
+
         return "打者資料已儲存";
     }
-    
-    
+
+
     @Override
     public BatterStatsDTO convertToDTO(Batter_log b) {
+
         BatterStatsDTO dto = new BatterStatsDTO();
+
         dto.setId(b.getId());
-        dto.setName(b.getName());       
-        dto.setDate(b.getDate());        
-        dto.setOpTeam(b.getOpTeam()); 
+        dto.setName(b.getName());
+        dto.setDate(b.getDate());
+        dto.setOpTeam(b.getOpTeam());
         dto.setAtBats(b.getAtBats());
         dto.setHits(b.getHits());
         dto.setStrikeouts(b.getStrikeouts());
         dto.setWalks(b.getWalks());
         dto.setTeam(b.getTeam());
+
         return dto;
     }
-    
-    
+
+
     @Override
-    public List<QueryStatsDTO> getStatsByName(String name,String team) {
+    public List<QueryStatsDTO> getStatsByName(
+            String name,
+            String team) {
 
         List<QueryStatsDTO> list = new ArrayList<>();
 
-        
-        for (Batter_log b : batterRepo.findByNameAndTeam(name,team)) {
+        for (Batter_log b :
+                batterRepo.findByNameAndTeam(name, team)) {
 
             QueryStatsDTO dto = new QueryStatsDTO();
+
             dto.setId(b.getId());
             dto.setType("打者");
             dto.setDate(b.getDate().toString());
@@ -70,54 +93,85 @@ public class BatterStatsServiceImpl implements BatterStatsService {
 
             list.add(dto);
         }
+
+        log.debug("打者查詢完成: team={}, name={}, count={}",
+                team, name, list.size());
+
         return list;
-    }    
-    
-
-    @Override
-    public BatterStatsDTO getBatterById(Long id,String team) {
-
-    	Batter_log b = batterRepo.findByIdAndTeam(id, team)
-                .orElseThrow(() -> new RuntimeException("找不到資料或沒有權限"));
-       
-    	return convertToDTO(b);
     }
-    
-    
+
+
     @Override
-    public void updateBatter(Long id, BatterStatsDTO dto,String team) {
+    public BatterStatsDTO getBatterById(
+            Long id,
+            String team) {
 
-    	Batter_log b = batterRepo.findByIdAndTeam(id, team)
-                .orElseThrow(() -> new RuntimeException("找不到資料或沒有權限修改"));
+        Batter_log b = batterRepo.findByIdAndTeam(id, team)
+                .orElseThrow(() -> {
 
-            b.setName(dto.getName());
-            b.setDate(dto.getDate());
-            b.setOpTeam(dto.getOpTeam());
-            b.setAtBats(dto.getAtBats());
-            b.setHits(dto.getHits());
-            b.setStrikeouts(dto.getStrikeouts());
-            b.setWalks(dto.getWalks());
-            
+                    log.warn("找不到打者或沒有權限: team={}, id={}",
+                            team, id);
 
-            batterRepo.save(b);
-        }
-    
-    
-    
-  
+                    return new RuntimeException(
+                            "找不到資料或沒有權限"
+                    );
+                });
+
+        return convertToDTO(b);
+    }
+
+
     @Override
-    public void deleteBatter(Long id,String team) {
-    	
-    	Batter_log b = batterRepo.findByIdAndTeam(id, team)
-                .orElseThrow(() -> new RuntimeException("找不到資料或沒有權限刪除"));
+    public void updateBatter(
+            Long id,
+            BatterStatsDTO dto,
+            String team) {
+
+        Batter_log b = batterRepo.findByIdAndTeam(id, team)
+                .orElseThrow(() -> {
+
+                    log.warn("打者修改失敗，找不到資料或沒有權限: team={}, id={}",
+                            team, id);
+
+                    return new RuntimeException(
+                            "找不到資料或沒有權限修改"
+                    );
+                });
+
+        b.setName(dto.getName());
+        b.setDate(dto.getDate());
+        b.setOpTeam(dto.getOpTeam());
+        b.setAtBats(dto.getAtBats());
+        b.setHits(dto.getHits());
+        b.setStrikeouts(dto.getStrikeouts());
+        b.setWalks(dto.getWalks());
+
+        batterRepo.save(b);
+
+        log.info("打者資料修改成功: team={}, id={}",
+                team, id);
+    }
+
+
+    @Override
+    public void deleteBatter(
+            Long id,
+            String team) {
+
+        Batter_log b = batterRepo.findByIdAndTeam(id, team)
+                .orElseThrow(() -> {
+
+                    log.warn("打者刪除失敗，找不到資料或沒有權限: team={}, id={}",
+                            team, id);
+
+                    return new RuntimeException(
+                            "找不到資料或沒有權限刪除"
+                    );
+                });
 
         batterRepo.delete(b);
-    }
-    
-    
-    
-    
-    
-}
-	
 
+        log.info("打者資料刪除成功: team={}, id={}",
+                team, id);
+    }
+}
