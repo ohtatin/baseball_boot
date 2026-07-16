@@ -20,6 +20,10 @@ https://baseball-boot.onrender.com/html/index.html
 
 * 使用 Spring Boot 建立 RESTful API
 * 使用 Spring Security + JWT 實作身分驗證
+* 使用 BCrypt 加密使用者密碼
+* 使用 Jakarta Validation 驗證使用者輸入資料
+* 使用 Global Exception Handler 統一處理 API 錯誤
+* 使用 SLF4J Logger 記錄系統執行資訊
 * 限制各球隊只能管理自己的球員資料
 * 使用 Spring Data JPA 操作資料庫
 * 使用 Liquibase 管理資料庫 Schema
@@ -58,6 +62,28 @@ https://baseball-boot.onrender.com/html/index.html
 
 系統依照 JWT Token 中的球隊資訊識別使用者，讓各球隊只能管理自己的球員資料，避免未授權操作。
 
+### 資料驗證
+
+使用 Jakarta Validation 驗證 API 輸入內容，例如：
+
+* 必填欄位檢查
+* 不可為負數
+* 日期不可為未來日期
+
+### 例外處理
+
+使用 @ControllerAdvice 建立全域 Exception Handler，統一回傳 API 錯誤訊息，避免 Controller 重複撰寫錯誤處理程式。
+
+### Logging
+
+使用 SLF4J Logger 記錄系統重要事件，例如：
+
+* 使用者登入
+* 新增球員資料
+* 修改球員資料
+* 刪除球員資料
+* 系統錯誤
+
 ### MLB 排行榜
 
 * 本季排行榜
@@ -77,6 +103,9 @@ https://baseball-boot.onrender.com/html/index.html
 * Spring Data JPA
 * JWT
 * BCrypt
+* Jakarta Validation
+* Global Exception Handler (@ControllerAdvice)
+* SLF4J Logger
 * Liquibase
 * Maven
 
@@ -175,11 +204,11 @@ Neon PostgreSQL
 
 ## 未來規劃
 
-* 增加單元測試與 API 測試
+* 增加 API 文件（Swagger）
 * 優化使用者介面
-* 增加球員資料統計分析
-* MLB 球員資料自動更新
-* 強化 Exception Handling 與 Logging
+* 增加球員數據分析功能
+* 自動排程更新 MLB 球員資料
+
 
 ---
 
