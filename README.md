@@ -14,17 +14,52 @@ https://baseball-boot.onrender.com/html/index.html
 
 > Render 使用免費方案，閒置後服務可能進入休眠，因此首次開啟網站時請稍等30~60秒。
 
+---
+
 ## 專案畫面
 
 ### 首頁
 
-提供 MLB 排行榜、球員成績管理等功能入口。
+提供 MLB 排行榜與球員成績管理等功能入口。
 
-<p align="center">
-  <img src="images/home.png" width="800">
-</p>
+![](images/home.png)
 
 ---
+
+### 使用者登入
+
+使用 JWT 身分驗證，登入後即可管理球隊資料。
+
+![](images/login.png)
+
+---
+
+### 球員成績管理
+
+提供投手、打者成績的新增、查詢、修改與刪除功能。
+
+| 新增球員  | 查詢 / 修改 / 刪除 |
+|---------|-----------------|
+| ![](images/post.png) | ![](images/query.png) |
+
+---
+
+### Swagger API
+
+提供完整 OpenAPI 文件，可直接於 Swagger UI 測試 REST API。
+
+![](images/swagger.png)
+
+---
+
+### MLB 排行榜
+
+提供 MLB 本季排行榜與生涯排行榜查詢。
+
+![](images/leaderboard.png)
+
+---
+
 
 ## 專案特色
 
