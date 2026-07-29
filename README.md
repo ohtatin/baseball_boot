@@ -18,7 +18,11 @@ https://baseball-boot.onrender.com/html/index.html
 
 ### 首頁
 
-![](images/home.png)
+提供 MLB 排行榜、球員成績管理等功能入口。
+
+<p align="center">
+  <img src="images/home.png" width="800">
+</p>
 
 ---
 
