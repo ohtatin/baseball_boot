@@ -12,7 +12,13 @@ Baseball Boot 是一個使用 **Java 21 / Spring Boot** 開發的棒球成績管
 
 https://baseball-boot.onrender.com/html/index.html
 
-> Render 使用免費方案，閒置後服務可能進入休眠，因此首次開啟網站時請稍等約一分鐘。
+> Render 使用免費方案，閒置後服務可能進入休眠，因此首次開啟網站時請稍等30~60秒。
+
+## 專案畫面
+
+### 首頁
+
+![](images/home.png)
 
 ---
 
@@ -23,6 +29,7 @@ https://baseball-boot.onrender.com/html/index.html
 * 使用 BCrypt 加密使用者密碼
 * 使用 Jakarta Validation 驗證使用者輸入資料
 * 使用 Global Exception Handler 統一處理 API 錯誤
+* 使用 Swagger/OpenAPI 建立 API 文件與測試介面
 * 使用 SLF4J Logger 記錄系統執行資訊
 * 限制各球隊只能管理自己的球員資料
 * 使用 Spring Data JPA 操作資料庫
@@ -42,56 +49,49 @@ https://baseball-boot.onrender.com/html/index.html
 * JWT Token 驗證
 * BCrypt 進行密碼雜湊
 
+
 ### 球員成績管理
 
-#### 投手
+* 投手 CRUD
+* 打者 CRUD
 
-* 新增
-* 查詢
-* 修改
-* 刪除
-
-#### 打者
-
-* 新增
-* 查詢
-* 修改
-* 刪除
-
-### 資料權限控制
-
-系統依照 JWT Token 中的球隊資訊識別使用者，讓各球隊只能管理自己的球員資料，避免未授權操作。
-
-### 資料驗證
-
-使用 Jakarta Validation 驗證 API 輸入內容，例如：
-
-* 必填欄位檢查
-* 不可為負數
-* 日期不可為未來日期
-
-### 例外處理
-
-使用 @ControllerAdvice 建立全域 Exception Handler，統一回傳 API 錯誤訊息，避免 Controller 重複撰寫錯誤處理程式。
-
-### Logging
-
-使用 SLF4J Logger 記錄系統重要事件，例如：
-
-* 使用者登入
-* 新增球員資料
-* 修改球員資料
-* 刪除球員資料
-* 系統錯誤
 
 ### MLB 排行榜
 
-* 本季排行榜
-* 生涯排行榜
+* 2025年度紀錄排行榜
+* 生涯紀錄排行榜
 
-排行榜資料來源為 MLB Stats API。
+
+### 資料權限控制
+
+依照 JWT Token 中的球隊資訊識別使用者，限制各球隊只能管理自己的球員資料。
+
+
+### 資料驗證
+
+使用 Jakarta Validation 驗證 API 輸入內容，避免不合法資料寫入資料庫。
+
+
+### API 文件
+
+使用 Swagger / OpenAPI 提供 API 文件，方便測試與驗證各項 REST API。
+
 
 ---
+
+## 技術亮點
+
+* RESTful API 設計
+* JWT Authentication & Authorization
+* Role-Based Access Control
+* Bean Validation
+* Global Exception Handling
+* Database Migration（Liquibase）
+* Cloud Deployment（Render + Neon PostgreSQL）
+* Python 擷取 MLB Stats API
+
+---
+
 
 ## 使用技術
 
@@ -106,14 +106,17 @@ https://baseball-boot.onrender.com/html/index.html
 * Jakarta Validation
 * Global Exception Handler (@ControllerAdvice)
 * SLF4J Logger
+* Swagger / OpenAPI
 * Liquibase
 * Maven
+
 
 ### Database
 
 * PostgreSQL
 * Neon PostgreSQL
 * MariaDB
+
 
 ### Frontend
 
@@ -122,10 +125,14 @@ https://baseball-boot.onrender.com/html/index.html
 * JavaScript
 * Fetch API
 
+
 ### Testing
 
 * JUnit 5
 * Mockito
+* Swagger UI
+* Postman
+
 
 ### Other
 
@@ -134,7 +141,6 @@ https://baseball-boot.onrender.com/html/index.html
 * Git
 * GitHub
 * Eclipse
-* Postman
 * Render
 
 ---
@@ -143,19 +149,10 @@ https://baseball-boot.onrender.com/html/index.html
 
 本專案使用 JUnit 5 與 Mockito 撰寫 Service Layer 單元測試。
 
-已測試：
+目前已涵蓋：
 
-### ClubServiceImpl
-
-* 註冊
-* 登入
-
-### BatterStatsServiceImpl
-
-* 新增打者資料
-* 查詢打者資料
-* 修改打者資料
-* 刪除打者資料
+* ClubServiceImpl
+* BatterStatsServiceImpl
 
 ---
 
@@ -173,6 +170,7 @@ Spring Boot REST API
    ├── Spring Security + JWT
    ├── Service Layer
    └── Spring Data JPA
+   └── Swagger / OpenAPI
             │
             ▼
     Neon PostgreSQL
@@ -204,7 +202,7 @@ Neon PostgreSQL
 
 ## 未來規劃
 
-* 增加 API 文件（Swagger）
+* 增加分頁與排序功能
 * 優化使用者介面
 * 增加球員數據分析功能
 * 自動排程更新 MLB 球員資料
