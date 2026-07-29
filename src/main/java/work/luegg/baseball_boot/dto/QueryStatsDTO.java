@@ -1,12 +1,38 @@
 package work.luegg.baseball_boot.dto;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class QueryStatsDTO {
-	
-	private long id;
-	private String type;   // 投手 / 打者
-	private String date;
-	private String opTeam;
-	private Object data;   // 裡面放 BatterDTO 或 PitcherDTO
+
+    @Schema(
+        description = "資料ID",
+        accessMode = Schema.AccessMode.READ_ONLY,
+        example = "15"
+    )
+    private long id;
+
+    @Schema(
+        description = "資料類型",
+        example = "投手"
+    )
+    private String type;
+
+    @Schema(
+        description = "比賽日期",
+        example = "2026-07-23"
+    )
+    private String date;
+
+    @Schema(
+        description = "對手球隊",
+        example = "Dodgers"
+    )
+    private String opTeam;
+
+    @Schema(
+        description = "詳細資料（PitcherStatsDTO 或 BatterStatsDTO）"
+    )
+    private Object data;
+
 
 	    // getter / setter
 

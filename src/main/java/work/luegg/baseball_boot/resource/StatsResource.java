@@ -16,17 +16,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import jakarta.servlet.http.HttpServletRequest;
 import work.luegg.baseball_boot.dto.BatterStatsDTO;
 import work.luegg.baseball_boot.dto.PitcherStatsDTO;
 import work.luegg.baseball_boot.dto.QueryStatsDTO;
 import work.luegg.baseball_boot.service.BatterStatsService;
 import work.luegg.baseball_boot.service.PitcherStatsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
+@SecurityRequirement(name = "bearerAuth")
+@Tag(
+	    name = "球員成績管理",
+	    description = "新增、查詢、修改、刪除投手與打者成績"
+	)
+
 public class StatsResource {
 
     private static final Logger log =
@@ -40,6 +48,10 @@ public class StatsResource {
 
 
     @PostMapping("/pitcher")
+    @Operation(
+    	    summary = "新增投手成績",
+    	    description = "新增一筆投手比賽成績資料"
+    	)
     public String savePitcher(
     		@Valid
             @RequestBody PitcherStatsDTO dto,
@@ -59,6 +71,10 @@ public class StatsResource {
 
 
     @PostMapping("/batter")
+    @Operation(
+    	    summary = "新增打者成績",
+    	    description = "新增一筆打者比賽成績資料"
+    	)
     public String saveBatter(
     		
     		@Valid
@@ -79,6 +95,10 @@ public class StatsResource {
 
 
     @GetMapping("/stats")
+    @Operation(
+    	    summary = "依姓名查詢成績",
+    	    description = "輸入球員姓名，查詢該球員所有成績"
+    	)
     public List<QueryStatsDTO> getStats(
             @RequestParam String name,
             HttpServletRequest request) {
@@ -104,6 +124,10 @@ public class StatsResource {
 
 
     @GetMapping("/pitcher/{id}")
+    @Operation(
+    	    summary = "依 ID 查詢投手資料",
+    	    description = "查詢單筆投手資料，通常用於修改前載入資料"
+    	)
     public PitcherStatsDTO getPitcher(
             @PathVariable Long id,
             HttpServletRequest request) {
@@ -116,6 +140,10 @@ public class StatsResource {
 
 
     @GetMapping("/batter/{id}")
+    @Operation(
+    	    summary = "依 ID 查詢打者資料",
+    	    description = "查詢單筆打者資料，通常用於修改前載入資料"
+    	)
     public BatterStatsDTO getBatter(
             @PathVariable Long id,
             HttpServletRequest request) {
@@ -128,6 +156,10 @@ public class StatsResource {
 
 
     @PutMapping("/pitcher/{id}")
+    @Operation(
+    	    summary = "依 ID 修改投手資料",
+    	    description = "修改單筆投手資料"
+    	)
     public String updatePitcher(
             @PathVariable Long id,
             @Valid
@@ -144,6 +176,10 @@ public class StatsResource {
 
 
     @PutMapping("/batter/{id}")
+    @Operation(
+    	    summary = "依 ID 修改打者資料",
+    	    description = "修改單筆打者資料"
+    	)
     public String updateBatter(
             @PathVariable Long id,
             @Valid
@@ -160,6 +196,10 @@ public class StatsResource {
 
 
     @DeleteMapping("/pitcher/{id}")
+    @Operation(
+    	    summary = "依 ID 刪除投手資料",
+    	    description = "刪除單筆投手資料"
+    	)
     public String deletePitcher(
             @PathVariable Long id,
             HttpServletRequest request) {
@@ -174,6 +214,10 @@ public class StatsResource {
 
 
     @DeleteMapping("/batter/{id}")
+    @Operation(
+    	    summary = "依 ID 刪除打者資料",
+    	    description = "刪除單筆打者資料"
+    	)
     public String deleteBatter(
             @PathVariable Long id,
             HttpServletRequest request) {

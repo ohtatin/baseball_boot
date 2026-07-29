@@ -51,6 +51,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 || path.startsWith("/css/")
                 || path.startsWith("/js/")
                 || path.startsWith("/images/")
+                || path.startsWith("/swagger-ui/")
+                || path.startsWith("/v3/api-docs")
                 || path.equals("/favicon.ico")) {
 
             log.debug("此路徑跳過 JWT 檢查: path={}", path);

@@ -35,6 +35,8 @@ public class SecurityConfig {
             					 "/club/register",
             				     "/mlb/leaderboard",
             					 "/mlb/alltime_leaderboard",
+            					 "/swagger-ui/**",
+            					 "/v3/api-docs/**",
             					 "/favicon.ico"
             				   
             	).permitAll()
