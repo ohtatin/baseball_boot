@@ -18,45 +18,23 @@ https://baseball-boot.onrender.com/html/index.html
 
 ## 專案畫面
 
-### 首頁
-
-提供 MLB 排行榜與球員成績管理等功能入口。
-
-![](images/home.png)
-
----
-
-### 使用者登入
-
-使用 JWT 身分驗證，登入後即可管理球隊資料。
-
-![](images/login.png)
+| 首頁 | 使用者登入 |
+|------|------|
+| 提供 MLB 排行榜與球員成績管理等功能入口。 | 使用 JWT 身分驗證，登入後即可管理球隊資料。 |
+| ![](images/home.png) | ![](images/login.png) |
 
 ---
 
-### 球員成績管理
-
-提供投手、打者成績的新增、查詢、修改與刪除功能。
-
-| 新增球員  | 查詢 / 修改 / 刪除 |
-|---------|-----------------|
+| 新增球員 | 查詢 / 修改 / 刪除 |
+|------|------|
 | ![](images/post.png) | ![](images/query.png) |
 
 ---
 
-### Swagger API
-
-提供完整 OpenAPI 文件，可直接於 Swagger UI 測試 REST API。
-
-![](images/swagger.png)
-
----
-
-### MLB 排行榜
-
-提供 MLB 本季排行榜與生涯排行榜查詢。
-
-![](images/leaderboard.png)
+| Swagger API | MLB 排行榜 |
+|------|------|
+| 提供完整 OpenAPI 文件，可直接測試 REST API。 | 提供 MLB 本季與生涯排行榜查詢。 |
+| ![](images/swagger.png) | ![](images/leaderboard.png) |
 
 ---
 
