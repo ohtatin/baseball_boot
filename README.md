@@ -20,7 +20,7 @@ https://baseball-boot.onrender.com/html/index.html
 
 | 首頁 | 使用者登入 |
 |------|------|
-| 提供 MLB 排行榜與球員成績管理等功能入口。 | 使用 JWT 身分驗證，登入後即可管理球隊資料。 |
+| 提供 MLB 本季排行榜、歷史排行榜及球員成績管理功能入口。 | 使用 JWT 身分驗證，登入後即可管理球隊資料。 |
 | ![](images/home.png) | ![](images/login.png) |
 
 ---
@@ -33,7 +33,7 @@ https://baseball-boot.onrender.com/html/index.html
 
 | Swagger API | MLB 排行榜 |
 |------|------|
-| 提供完整 OpenAPI 文件，可直接測試 REST API。 | 提供 MLB 本季與生涯排行榜查詢。 |
+| 提供 Swagger / OpenAPI 文件，可於 Swagger UI 測試 REST API。 | 提供 MLB 本季與生涯排行榜查詢。 |
 | ![](images/swagger.png) | ![](images/leaderboard.png) |
 
 ---
@@ -232,3 +232,7 @@ Neon PostgreSQL
 GitHub：
 
 https://github.com/ohtatin
+
+Email:
+
+paiyongen@gmail.com
