@@ -4,15 +4,17 @@
 
 Baseball Boot 是一個使用 **Java 21 / Spring Boot** 開發的棒球成績管理網站，提供球隊註冊登入、球員成績 CRUD 管理、JWT 身分驗證與資料權限控制，並整合 MLB 球員排行榜資料。
 
+前端使用 **Vue 3、Vue Router、Axios 與 Vite** 開發，並與 Spring Boot RESTful API 整合。
+
 專案已部署至 Render，並使用 Neon PostgreSQL 雲端資料庫。
 
 ---
 
 ## 線上網站
 
-https://baseball-boot.onrender.com/html/index.html
+https://baseball-boot.onrender.com/
 
-> Render 使用免費方案，閒置後服務可能進入休眠，因此首次開啟網站時請稍等30~60秒。
+> Render 使用免費方案，閒置後服務可能進入休眠，因此首次開啟網站時請稍等 30~60 秒。
 
 ---
 
@@ -33,11 +35,10 @@ https://baseball-boot.onrender.com/html/index.html
 
 | Swagger API | MLB 排行榜 |
 |------|------|
-| 提供 Swagger / OpenAPI 文件，可於 Swagger UI 測試 REST API。 | 提供 MLB 本季與生涯排行榜查詢。 |
+| 提供 Swagger / OpenAPI 文件，可於 Swagger UI 測試 REST API。 | 提供 MLB 本季與歷史排行榜查詢。 |
 | ![](images/swagger.png) | ![](images/leaderboard.png) |
 
 ---
-
 
 ## 專案特色
 
@@ -46,13 +47,15 @@ https://baseball-boot.onrender.com/html/index.html
 * 使用 BCrypt 加密使用者密碼
 * 使用 Jakarta Validation 驗證使用者輸入資料
 * 使用 Global Exception Handler 統一處理 API 錯誤
-* 使用 Swagger/OpenAPI 建立 API 文件與測試介面
+* 使用 Swagger / OpenAPI 建立 API 文件與測試介面
 * 使用 SLF4J Logger 記錄系統執行資訊
 * 限制各球隊只能管理自己的球員資料
 * 使用 Spring Data JPA 操作資料庫
 * 使用 Liquibase 管理資料庫 Schema
 * 使用 Python 取得與處理 MLB 球員資料
 * 使用 JUnit 5 + Mockito 撰寫單元測試
+* 使用 Vue 3、Vue Router、Axios、Vite 建立前端
+* 完成 Vue 前端與 Spring Boot RESTful API 整合
 * 部署至 Render + Neon PostgreSQL
 
 ---
@@ -66,33 +69,27 @@ https://baseball-boot.onrender.com/html/index.html
 * JWT Token 驗證
 * BCrypt 進行密碼雜湊
 
-
 ### 球員成績管理
 
 * 投手 CRUD
 * 打者 CRUD
 
-
 ### MLB 排行榜
 
-* 2025年度紀錄排行榜
+* 2025 年度紀錄排行榜
 * 生涯紀錄排行榜
-
 
 ### 資料權限控制
 
 依照 JWT Token 中的球隊資訊識別使用者，限制各球隊只能管理自己的球員資料。
 
-
 ### 資料驗證
 
 使用 Jakarta Validation 驗證 API 輸入內容，避免不合法資料寫入資料庫。
 
-
 ### API 文件
 
 使用 Swagger / OpenAPI 提供 API 文件，方便測試與驗證各項 REST API。
-
 
 ---
 
@@ -104,11 +101,13 @@ https://baseball-boot.onrender.com/html/index.html
 * Bean Validation
 * Global Exception Handling
 * Database Migration（Liquibase）
+* Vue 3 前端整合
+* Vue Router 路由管理
+* Axios API 串接
 * Cloud Deployment（Render + Neon PostgreSQL）
 * Python 擷取 MLB Stats API
 
 ---
-
 
 ## 使用技術
 
@@ -127,21 +126,21 @@ https://baseball-boot.onrender.com/html/index.html
 * Liquibase
 * Maven
 
-
 ### Database
 
 * PostgreSQL
 * Neon PostgreSQL
 * MariaDB
 
-
 ### Frontend
 
+* Vue 3
+* Vue Router
+* Axios
+* Vite
 * HTML
 * CSS
 * JavaScript
-* Fetch API
-
 
 ### Testing
 
@@ -149,7 +148,6 @@ https://baseball-boot.onrender.com/html/index.html
 * Mockito
 * Swagger UI
 * Postman
-
 
 ### Other
 
@@ -179,21 +177,20 @@ https://baseball-boot.onrender.com/html/index.html
 Browser
    │
    ▼
-HTML / CSS / JavaScript
+Vue 3 + Vue Router + Axios
    │
    ▼
 Spring Boot REST API
    │
    ├── Spring Security + JWT
    ├── Service Layer
-   └── Spring Data JPA
+   ├── Spring Data JPA
    └── Swagger / OpenAPI
             │
             ▼
-    Neon PostgreSQL
-```
+      Neon PostgreSQL
 
----
+
 
 ## 雲端部署
 
