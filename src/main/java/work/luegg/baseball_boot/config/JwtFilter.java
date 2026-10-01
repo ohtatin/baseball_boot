@@ -42,6 +42,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
         // 這些路徑不用檢查 token
         if (path.equals("/")
+        		|| path.equals("/login")
+                || path.equals("/current-leaderboard")
+                || path.equals("/alltime-leaderboard")
+                || path.equals("/index.html")
+                || path.startsWith("/assets/")
                 || path.equals("/api/auth/login")
                 || path.equals("/club/login")
                 || path.equals("/club/register")

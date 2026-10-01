@@ -26,6 +26,11 @@ public class SecurityConfig {
             .httpBasic(basic -> basic.disable())
             .authorizeHttpRequests(auth -> auth
             	.requestMatchers("/",
+            					 "/login",
+            					 "/current-leaderboard",
+            					 "/alltime-leaderboard",
+            					 "/assets/**",
+            					 "/index.html",
             				     "/api/auth/login",
             					 "/html/**",
             					 "/css/**",
